@@ -1,28 +1,30 @@
 package nology.io.mitch.Employees;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 
+@Data
+@AllArgsConstructor(staticName = "build")
 public class CreateEmployeeDTO {
 
-  @NotBlank
+  @NotBlank(message = "First name must not be left blank")
   private String firstName;
 
-  @NotBlank
+  @NotBlank(message = "Last name must not be left blank")
   private String lastName;
 
-  @NotBlank
-  @Pattern(
-    regexp = "/^(.+)@(\\S+)$/",
-    message = "Email must be a valid Email Address"
-  )
+  @NotBlank(message = "Email must not be left blank")
+  @Email(message = "Invalid Email Address")
   private String email;
 
   @Pattern(
-    regexp = "/^(\\+?\\(61\\)|\\(\\+?61\\)|\\+?61|\\(0[1-9]\\)|0[1-9])?( ?-?[0-9]){7,9}$/",
+    regexp = "^\\d{10}$",
     message = "Phone number must be a valid Australian Phone Number"
   )
-  private Long phoneNumber;
+  private String phoneNumber;
 
   public String getFirstName() {
     return firstName;
@@ -48,11 +50,11 @@ public class CreateEmployeeDTO {
     this.email = email;
   }
 
-  public Long getPhoneNumber() {
+  public String getPhoneNumber() {
     return phoneNumber;
   }
 
-  public void setPhoneNumber(Long phoneNumber) {
+  public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 }
