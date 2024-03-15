@@ -6,14 +6,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
+// import lombok.AccessLevel;
+// import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "employees")
 @Data
-@AllArgsConstructor(staticName = "build")
+// @AllArgsConstructor(access = AccessLevel.PUBLIC, staticName = "build")
 @NoArgsConstructor
 public class Employee {
 
@@ -33,4 +34,18 @@ public class Employee {
 
   @Column
   private String phoneNumber;
+
+  public Employee(
+    Long id,
+    String firstName,
+    String lastName,
+    String email,
+    String phoneNumber
+  ) {
+    this.id = id;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+    this.phoneNumber = phoneNumber;
+  }
 }

@@ -22,7 +22,7 @@ public class EmployeeService {
   }
 
   public Employee createEmployee(@Valid CreateEmployeeDTO data) {
-    Employee newEmployee = Employee.build(
+    Employee newEmployee = new Employee(
       null,
       data.getFirstName(),
       data.getLastName(),
