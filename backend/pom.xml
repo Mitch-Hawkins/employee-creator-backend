@@ -83,6 +83,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>employee-creator-docker</finalName>
 	</build>
 
 </project>
