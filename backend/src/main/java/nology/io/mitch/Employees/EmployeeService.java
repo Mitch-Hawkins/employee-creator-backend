@@ -22,13 +22,15 @@ public class EmployeeService {
   }
 
   public Employee createEmployee(@Valid CreateEmployeeDTO data) {
-    Employee newEmployee = new Employee(
-      null,
-      data.getFirstName(),
-      data.getLastName(),
-      data.getEmail(),
-      data.getPhoneNumber()
-    );
+    // Employee newEmployee = new Employee(
+    //   null,
+    //   data.getFirstName(),
+    //   data.getLastName(),
+    //   data.getEmail(),
+    //   data.getPhoneNumber()
+    // );
+    ModelMapper modelMapper = new ModelMapper();
+    Employee newEmployee = modelMapper.map(data, Employee.class);
     return this.repo.save(newEmployee);
   }
 
