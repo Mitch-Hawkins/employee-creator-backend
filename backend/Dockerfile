@@ -1,4 +1,4 @@
-FROM openjdk:17
+FROM openjdk:21
 EXPOSE 8080
 ADD target/employee-creator-docker.jar employee-creator-docker.jar
 ENTRYPOINT ["java", "-jar", "/employee-creator-docker.jar"]
