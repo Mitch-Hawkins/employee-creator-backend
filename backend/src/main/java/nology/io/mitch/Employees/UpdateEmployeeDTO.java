@@ -5,19 +5,13 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-// import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-// import lombok.AccessLevel;
-// import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-// @AllArgsConstructor(access = AccessLevel.PUBLIC, staticName = "build")
-@NoArgsConstructor
-public class CreateEmployeeDTO {
+public class UpdateEmployeeDTO {
 
   private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
     "yyyy-MM-dd'T'HH:mm:ss"
@@ -59,7 +53,7 @@ public class CreateEmployeeDTO {
   )
   private int hoursPerWeek;
 
-  public CreateEmployeeDTO(
+  public UpdateEmployeeDTO(
     @NotBlank(message = "First name must not be left blank") String firstName,
     String middleName,
     @NotBlank(message = "Last name must not be left blank") String lastName,

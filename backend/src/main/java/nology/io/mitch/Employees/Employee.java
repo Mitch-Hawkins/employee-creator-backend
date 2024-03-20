@@ -6,9 +6,17 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
+// import lombok.AccessLevel;
+// import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "employees")
+@Data
+// @AllArgsConstructor(access = AccessLevel.PUBLIC, staticName = "build")
+@NoArgsConstructor
 public class Employee {
 
   @Id
@@ -20,51 +28,58 @@ public class Employee {
   private String firstName;
 
   @Column
+  private String middleName; //New
+
+  @Column
   private String lastName;
 
   @Column
   private String email;
 
   @Column
-  private Long phoneNumber;
+  private String phoneNumber;
 
-  public Employee() {
-    super();
-  }
+  @Column
+  private EmploymentType employmentType; //New
 
-  public Long getId() {
-    return id;
-  }
+  @Column
+  private LocalDateTime startDate; //New
 
-  public String getFirstName() {
-    return firstName;
-  }
+  @Column
+  private int hoursPerWeek; //New
 
-  public void setFirstName(String firstName) {
+  public Employee(
+    Long id,
+    String firstName,
+    String middleName,
+    String lastName,
+    String email,
+    String phoneNumber,
+    EmploymentType employmentType,
+    LocalDateTime startDate,
+    int hoursPerWeek
+  ) {
+    this.id = id;
     this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
+    this.middleName = middleName;
     this.lastName = lastName;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
     this.email = email;
-  }
-
-  public Long getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(Long phoneNumber) {
     this.phoneNumber = phoneNumber;
+    this.employmentType = employmentType;
+    this.startDate = startDate;
+    this.hoursPerWeek = hoursPerWeek;
   }
+  // public Employee(
+  //   Long id,
+  //   String firstName,
+  //   String lastName,
+  //   String email,
+  //   String phoneNumber
+  // ) {
+  //   this.id = id;
+  //   this.firstName = firstName;
+  //   this.lastName = lastName;
+  //   this.email = email;
+  //   this.phoneNumber = phoneNumber;
+  // }
 }
