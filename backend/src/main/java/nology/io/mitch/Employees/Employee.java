@@ -6,10 +6,18 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import java.time.LocalDateTime;
 // import lombok.AccessLevel;
 // import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+enum EmployementType {
+  FullTime,
+  PartTime,
+  Casual,
+  Contract,
+}
 
 @Entity
 @Table(name = "employees")
@@ -27,6 +35,9 @@ public class Employee {
   private String firstName;
 
   @Column
+  private String middleName; //New
+
+  @Column
   private String lastName;
 
   @Column
@@ -35,17 +46,47 @@ public class Employee {
   @Column
   private String phoneNumber;
 
+  @Column
+  private EmployementType employementType; //New
+
+  @Column
+  private LocalDateTime startDate; //New
+
+  @Column
+  private int hoursPerWeek; //New
+
   public Employee(
     Long id,
     String firstName,
+    String middleName,
     String lastName,
     String email,
-    String phoneNumber
+    String phoneNumber,
+    EmployementType employementType,
+    LocalDateTime startDate,
+    int hoursPerWeek
   ) {
     this.id = id;
     this.firstName = firstName;
+    this.middleName = middleName;
     this.lastName = lastName;
     this.email = email;
     this.phoneNumber = phoneNumber;
+    this.employementType = employementType;
+    this.startDate = startDate;
+    this.hoursPerWeek = hoursPerWeek;
   }
+  // public Employee(
+  //   Long id,
+  //   String firstName,
+  //   String lastName,
+  //   String email,
+  //   String phoneNumber
+  // ) {
+  //   this.id = id;
+  //   this.firstName = firstName;
+  //   this.lastName = lastName;
+  //   this.email = email;
+  //   this.phoneNumber = phoneNumber;
+  // }
 }
