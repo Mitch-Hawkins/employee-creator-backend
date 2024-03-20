@@ -23,6 +23,14 @@ public class EmployeeController {
   @Autowired
   private EmployeeService employeeService;
 
+  @GetMapping("/")
+  public ResponseEntity<String> hello() {
+    return new ResponseEntity<>(
+      "This is to test that the app is running successfully",
+      HttpStatus.OK
+    );
+  }
+
   @GetMapping
   public ResponseEntity<List<Employee>> getAllEmployees() {
     List<Employee> allEmployees = this.employeeService.getAll();
