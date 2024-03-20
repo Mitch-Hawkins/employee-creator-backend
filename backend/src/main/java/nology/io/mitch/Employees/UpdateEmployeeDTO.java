@@ -36,7 +36,7 @@ public class UpdateEmployeeDTO {
   private String phoneNumber;
 
   @NotNull(message = "Employee must have an employment type selected")
-  private EmployementType employementType;
+  private EmploymentType employmentType;
 
   @NotBlank(message = "Employee must have a start date")
   @Pattern(
@@ -66,7 +66,7 @@ public class UpdateEmployeeDTO {
     ) String phoneNumber,
     @NotBlank(
       message = "Employee must have an employment type selected"
-    ) EmployementType employementType,
+    ) EmploymentType employmentType,
     @NotBlank(message = "Employee must have a start date") @Pattern(
       regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
       message = "Start Date must use correct formatting"
@@ -86,7 +86,7 @@ public class UpdateEmployeeDTO {
     this.lastName = lastName;
     this.email = email;
     this.phoneNumber = phoneNumber;
-    this.employementType = employementType;
+    this.employmentType = employmentType;
     this.startDate = startDate;
     this.hoursPerWeek = hoursPerWeek;
   }
@@ -131,12 +131,12 @@ public class UpdateEmployeeDTO {
     this.middleName = middleName;
   }
 
-  public EmployementType getEmployementType() {
-    return employementType;
+  public EmploymentType getEmployementType() {
+    return employmentType;
   }
 
-  public void setEmploymentType(EmployementType employmentType) {
-    this.employementType = employmentType;
+  public void setEmploymentType(EmploymentType employmentType) {
+    this.employmentType = employmentType;
   }
 
   public LocalDateTime getStartDate() {

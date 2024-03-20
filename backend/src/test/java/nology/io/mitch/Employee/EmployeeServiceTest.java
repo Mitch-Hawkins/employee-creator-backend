@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -11,6 +12,7 @@ import nology.io.mitch.Employees.CreateEmployeeDTO;
 import nology.io.mitch.Employees.Employee;
 import nology.io.mitch.Employees.EmployeeRepository;
 import nology.io.mitch.Employees.EmployeeService;
+import nology.io.mitch.Employees.EmploymentType;
 import nology.io.mitch.Employees.UpdateEmployeeDTO;
 import nology.io.mitch.Exceptions.EmployeeNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,16 +40,24 @@ public class EmployeeServiceTest {
     Employee employee1 = new Employee(
       1L,
       "Mitch",
+      "Thomas",
       "Hawkins",
       "mitch@mail.com",
-      "1234567890"
+      "1234567890",
+      EmploymentType.Casual,
+      LocalDateTime.parse("2023-06-11T21:00:00"),
+      12
     );
     Employee employee2 = new Employee(
       2L,
       "Kevin",
-      "DeBruyne",
+      "De",
+      "Bruyne",
       "KDB@example.com",
-      "1717171717"
+      "1717171717",
+      EmploymentType.FullTime,
+      LocalDateTime.now(),
+      17
     );
     List<Employee> expectedEmployees = Arrays.asList(employee1, employee2);
 
@@ -64,16 +74,24 @@ public class EmployeeServiceTest {
     Employee employee1 = new Employee(
       1L,
       "Mitch",
+      "Thomas",
       "Hawkins",
       "mitch@mail.com",
-      "1234567890"
+      "1234567890",
+      EmploymentType.Casual,
+      LocalDateTime.parse("2023-06-11T21:00:00"),
+      12
     );
     Employee employee2 = new Employee(
       2L,
       "Kevin",
-      "DeBruyne",
+      "De",
+      "Bruyne",
       "KDB@example.com",
-      "1717171717"
+      "1717171717",
+      EmploymentType.FullTime,
+      LocalDateTime.now(),
+      17
     );
     when(mockEmployeeRepository.findById(1L))
       .thenReturn(Optional.of(employee1));
@@ -90,16 +108,24 @@ public class EmployeeServiceTest {
   public void testCreateEmployee() throws MethodArgumentNotValidException {
     CreateEmployeeDTO employeeData = new CreateEmployeeDTO(
       "Mitch",
+      "Thomas",
       "Hawkins",
       "mitch@mail.com",
-      "1234567890"
+      "1234567890",
+      EmploymentType.Casual,
+      "2023-06-11T21:00:00",
+      12
     );
     Employee savedEmployee = new Employee(
       1L,
       "Mitch",
+      "Thomas",
       "Hawkins",
       "mitch@mail.com",
-      "1234567890"
+      "1234567890",
+      EmploymentType.Casual,
+      LocalDateTime.parse("2023-06-11T21:00:00"),
+      12
     );
     when(mockEmployeeRepository.save(any(Employee.class)))
       .thenReturn(savedEmployee);
@@ -112,23 +138,35 @@ public class EmployeeServiceTest {
   public void testUpdateEmployee() throws EmployeeNotFoundException {
     UpdateEmployeeDTO employeeData = new UpdateEmployeeDTO(
       "Mitch",
+      "Thomas",
       "Hawkins",
       "mitch@mail.com",
-      "1234567890"
+      "1234567890",
+      EmploymentType.Casual,
+      "2023-06-11T21:00:00",
+      12
     );
     Employee savedEmployee = new Employee(
       1L,
       "Kevin",
-      "DeBruyne",
+      "De",
+      "Bruyne",
       "KDB@example.com",
-      "1717171717"
+      "1717171717",
+      EmploymentType.FullTime,
+      LocalDateTime.now(),
+      17
     );
     Employee updatedEmployee = new Employee(
       1L,
       "Mitch",
+      "Thomas",
       "Hawkins",
       "mitch@mail.com",
-      "1234567890"
+      "1234567890",
+      EmploymentType.Casual,
+      LocalDateTime.parse("2023-06-11T21:00:00"),
+      12
     );
     when(mockEmployeeRepository.findById(1L))
       .thenReturn(Optional.of(savedEmployee));

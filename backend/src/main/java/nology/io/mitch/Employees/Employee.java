@@ -12,13 +12,6 @@ import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-enum EmployementType {
-  FullTime,
-  PartTime,
-  Casual,
-  Contract,
-}
-
 @Entity
 @Table(name = "employees")
 @Data
@@ -47,7 +40,7 @@ public class Employee {
   private String phoneNumber;
 
   @Column
-  private EmployementType employementType; //New
+  private EmploymentType employmentType; //New
 
   @Column
   private LocalDateTime startDate; //New
@@ -62,7 +55,7 @@ public class Employee {
     String lastName,
     String email,
     String phoneNumber,
-    EmployementType employementType,
+    EmploymentType employmentType,
     LocalDateTime startDate,
     int hoursPerWeek
   ) {
@@ -72,7 +65,7 @@ public class Employee {
     this.lastName = lastName;
     this.email = email;
     this.phoneNumber = phoneNumber;
-    this.employementType = employementType;
+    this.employmentType = employmentType;
     this.startDate = startDate;
     this.hoursPerWeek = hoursPerWeek;
   }
