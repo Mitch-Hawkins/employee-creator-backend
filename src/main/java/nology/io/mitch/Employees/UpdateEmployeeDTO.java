@@ -14,7 +14,7 @@ import lombok.Data;
 public class UpdateEmployeeDTO {
 
   private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
-    "yyyy-MM-dd'T'HH:mm:ss"
+    "yyyy-MM-dd'T'HH:mm"
   );
 
   @NotBlank(message = "First name must not be left blank")
@@ -40,8 +40,8 @@ public class UpdateEmployeeDTO {
 
   @NotBlank(message = "Employee must have a start date")
   @Pattern(
-    regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
-    // regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
+    // regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}$",
+    regexp = "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
     message = "Start Date must use correct formatting"
   )
   private String startDate;

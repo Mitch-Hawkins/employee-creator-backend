@@ -2,11 +2,14 @@ package nology.io.mitch.Employees;
 
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
-import java.util.List;
+// import java.util.List;
 import java.util.Optional;
 import nology.io.mitch.Exceptions.EmployeeNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +20,9 @@ public class EmployeeService {
   @Autowired
   private EmployeeRepository repo;
 
-  public List<Employee> getAll() {
-    return this.repo.findAll();
+  public Page<Employee> getAll(int page, int size) {
+    PageRequest pageRequest = PageRequest.of(page, size);
+    return this.repo.findAll(pageRequest);
   }
 
   public Employee createEmployee(@Valid CreateEmployeeDTO data) {
@@ -45,6 +49,19 @@ public class EmployeeService {
       );
     }
   }
+
+  // public Page<Employee> findByName(String name, Pageable pageable)
+  //   throws EmployeeNotFoundException {
+  //   Page<Employee> employees = repo.findByName(name, pageable);
+  //   if (!employees.isEmpty()) {
+  //     return employees;
+  //   } else {
+  //     throw new EmployeeNotFoundException(
+  //       "No Employees Found!",
+  //       HttpStatus.NOT_FOUND
+  //     );
+  //   }
+  // }
 
   public Optional<Employee> updateById(@Valid UpdateEmployeeDTO data, Long id)
     throws EmployeeNotFoundException {

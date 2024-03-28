@@ -20,6 +20,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 public class EmployeeServiceTest {
@@ -61,12 +65,17 @@ public class EmployeeServiceTest {
     );
     List<Employee> expectedEmployees = Arrays.asList(employee1, employee2);
 
-    when(mockEmployeeRepository.findAll()).thenReturn(expectedEmployees);
+    Pageable pageable = PageRequest.of(0, 2);
 
-    List<Employee> actualEmployees = employeeService.getAll();
+    when(mockEmployeeRepository.findAll(pageable))
+      .thenReturn(
+        new PageImpl<>(expectedEmployees, pageable, expectedEmployees.size())
+      );
 
-    assertEquals(expectedEmployees.size(), actualEmployees.size());
-    assertEquals(expectedEmployees, actualEmployees);
+    Page<Employee> actualEmployees = employeeService.getAll(0, 2);
+
+    assertEquals(expectedEmployees.size(), actualEmployees.getSize());
+    assertEquals(expectedEmployees, actualEmployees.getContent());
   }
 
   @Test
