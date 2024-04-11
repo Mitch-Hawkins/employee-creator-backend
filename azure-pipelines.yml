@@ -31,7 +31,7 @@ stages:
           effectivePomSkip: false
           sonarQubeRunAnalysis: false
           goals: 'package -DskipTests'
-      - publish: $(System.DefaultWorkingDirectory)/s
+      - publish: $(System.DefaultWorkingDirectory)
         artifact: employee-creator-docker
         
 
