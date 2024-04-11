@@ -41,8 +41,6 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        repository: 'employee-creator-docker'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        addPipelineData: false
-        addBaseImageData: false
+        arguments: '-t employee-creator-docker'
