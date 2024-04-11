@@ -23,13 +23,14 @@ stages:
     - task: Maven@4
       inputs:
         mavenPomFile: 'pom.xml'
-        publishJUnitResults: true
-        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        publishJUnitResults: false
         javaHomeOption: 'JDKVersion'
+        jdkVersionOption: '1.17'
         mavenVersionOption: 'Default'
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
+        goals: 'package -DskipTests'
 - stage: Docker_Build
   displayName: Build image
   jobs:
@@ -44,8 +45,3 @@ stages:
         Dockerfile: '**/Dockerfile'
         tags: |
           $(tag)
-    # - task: Docker@2
-    #   displayName: Build an image
-    #   inputs:
-    #     command: build
-    #     dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
