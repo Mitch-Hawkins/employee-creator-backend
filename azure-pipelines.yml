@@ -32,8 +32,6 @@ stages:
         sonarQubeRunAnalysis: false
         goals: 'package -DskipTests'
         
-    - publish: $(System.DefaultWorkingDirectory)
-      artifact: drop
 
 - stage: Docker_Build
   displayName: Build image
@@ -47,4 +45,4 @@ stages:
       inputs:
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        buildContext: '.'
+        buildContext: 'target'
