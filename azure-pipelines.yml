@@ -43,5 +43,3 @@ stages:
       inputs:
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        addPipelineData: false
-        addBaseImageData: false
