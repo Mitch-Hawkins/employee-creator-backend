@@ -43,4 +43,4 @@ stages:
       inputs:
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        arguments: '-t employee-creator-docker'
+        buildContext: '.'
