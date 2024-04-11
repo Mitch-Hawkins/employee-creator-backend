@@ -45,4 +45,3 @@ stages:
       inputs:
         command: 'build'
         Dockerfile: '**/Dockerfile'
-        buildContext: 'target'
