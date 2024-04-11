@@ -12,7 +12,25 @@ variables:
   tag: '$(Build.BuildId)'
 
 stages:
-- stage: Build
+- stage: Maven_Build
+  displayName: Build jar
+  jobs:
+  - job: Build
+    displayName: Build jar
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Maven@4
+      inputs:
+        mavenPomFile: 'pom.xml'
+        publishJUnitResults: true
+        testResultsFiles: '**/surefire-reports/TEST-*.xml'
+        javaHomeOption: 'JDKVersion'
+        mavenVersionOption: 'Default'
+        mavenAuthenticateFeed: false
+        effectivePomSkip: false
+        sonarQubeRunAnalysis: false
+- stage: Docker_Build
   displayName: Build image
   jobs:
   - job: Build
