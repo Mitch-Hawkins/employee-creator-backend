@@ -30,6 +30,7 @@ stages:
         mavenAuthenticateFeed: false
         effectivePomSkip: false
         sonarQubeRunAnalysis: false
+        goals: 'package -DskipTests'
 - stage: Docker_Build
   displayName: Build image
   jobs:
