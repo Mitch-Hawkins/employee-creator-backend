@@ -32,7 +32,7 @@ stages:
         sonarQubeRunAnalysis: false
         goals: 'package -DskipTests'
         
-    - publish: $(Build.ArtifactStagingDirectory)
+    - publish: $(System.DefaultWorkingDirectory)
       artifact: drop
 
 - stage: Docker_Build
