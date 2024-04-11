@@ -41,7 +41,5 @@ stages:
     steps:
     - task: Docker@2
       inputs:
-        command: 'buildAndPush'
+        command: 'build'
         Dockerfile: '**/Dockerfile'
-        tags: |
-          $(tag)
